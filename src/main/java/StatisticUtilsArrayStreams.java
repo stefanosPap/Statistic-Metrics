@@ -1,27 +1,25 @@
-import org.apache.commons.math3.stat.descriptive.moment.Mean;
-import org.apache.commons.math3.stat.descriptive.moment.StandardDeviation;
-import org.apache.commons.math3.stat.descriptive.rank.Max;
-import org.apache.commons.math3.stat.descriptive.rank.Median;
-import org.apache.commons.math3.stat.descriptive.rank.Min;
+import java.util.*;
+import java.util.stream.DoubleStream;
 
 /**
  * Statistical metrics for an array of doubles
  * @author Stefanos Papadam
  */
-public class StatisticUtilsArray {
+public class StatisticUtilsArrayStreams {
 
     private double[] array;
+    private DoubleStream stream;
     /**
      * Default Constructor
      */
-    public StatisticUtilsArray(){
+    public StatisticUtilsArrayStreams(){
     }
 
     /**
      * Constructor
      * @param array values provided for metrics calculation
      */
-    public StatisticUtilsArray(double[] array){
+    public StatisticUtilsArrayStreams(double[] array){
         this.setArray(array);
     }
 
@@ -33,14 +31,16 @@ public class StatisticUtilsArray {
         this.array = array;
     }
 
+    public void convertArrayToStream(double[] array){this.stream = Arrays.stream(array);}
+
     /**
      * Calculates array's minimum value
      * @param array array to calculate minimum value
      * @return minimum value
      */
     public double getMinimum(double[] array){
-        Min m = new Min();
-        double minimum = m.evaluate(array);
+        this.convertArrayToStream(array);
+        double minimum = this.stream.min().getAsDouble();
         return minimum;
     }
 
@@ -50,8 +50,8 @@ public class StatisticUtilsArray {
      * @return maximum value
      */
     public double getMaximum(double[] array){
-        Max m = new Max();
-        double maximum = m.evaluate(array);
+        this.convertArrayToStream(array);
+        double maximum = this.stream.max().getAsDouble();
         return maximum;
     }
 
@@ -61,8 +61,17 @@ public class StatisticUtilsArray {
      * @return median value
      */
     public double getMedian(double[] array){
-        Median m = new Median();
-        double median = m.evaluate(array);
+        double median;
+        this.convertArrayToStream(array);
+        // case of odd
+        if (array.length % 2 == 1) {
+            median = this.stream.sorted().skip((array.length - 1) / 2).limit(1).min().getAsDouble();    // min() has not specific operation.
+                                                                                                        // It is used only to convert the result from DoubleStream to double
+        }
+        // case of even
+        else{
+            median = this.stream.sorted().skip((array.length) / 2 - 1).limit(2).average().getAsDouble();
+        }
         return median;
     }
 
@@ -72,8 +81,8 @@ public class StatisticUtilsArray {
      * @return mean value
      */
     public double getMean(double[] array){
-        Mean m = new Mean();
-        double mean = m.evaluate(array);
+        this.convertArrayToStream(array);
+        double mean = this.stream.average().getAsDouble();
         return mean;
     }
 
@@ -83,33 +92,21 @@ public class StatisticUtilsArray {
      * @return standard deviation
      */
     public double getStandardDeviation(double[] array){
-        StandardDeviation m = new StandardDeviation();
-        double std = m.evaluate(array);
+        double mean = this.getMean(array);
+        this.convertArrayToStream(array);
+        double var = this.stream.map(i -> i - mean).map(i -> i*i).average().getAsDouble();
+        double std = Math.sqrt(var);
         return std;
     }
 
-    /**
-     * Calculates array's total metrics
-     * @param array array to calculate metrics
-     * @return metrics
-     */
-    public double[] getStats(double[] array){
-        double minimum = this.getMinimum(array);
-        double maximum = this.getMaximum(array);
-        double median = this.getMedian(array);
-        double mean = this.getMean(array);
-        double std = this.getStandardDeviation(array);
-        double[] stats = {minimum, maximum, median, mean, std};
-        return stats;
-    }
 
     /**
-     * Tests array metrics that provided by StatisticUtilsArray
+     * Tests array metrics that provided by StatisticUtilsArrayStreams
      * @param args command-line arguments
      */
     public static void main(String[] args){
         double[] array = {1.0,2.0,3.0,4.0,5.0,6.0};
-        StatisticUtilsArray stats = new StatisticUtilsArray(array);
+        StatisticUtilsArrayStreams stats = new StatisticUtilsArrayStreams(array);
 
         double minimum = stats.getMinimum(array);
         double maximum = stats.getMaximum(array);
