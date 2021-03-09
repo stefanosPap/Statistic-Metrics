@@ -1,31 +1,55 @@
 import java.util.ArrayList;
-import org.apache.commons.lang3.*;
-
 import static org.apache.commons.lang3.ArrayUtils.*;
 
+/**
+ * Statistical metrics for an ArrayList of doubles
+ * Inherits all statistical methods from StatisticUtilsArray
+ * @author Stefanos Papadam
+ */
 public class StatisticUtilsArrayList extends StatisticUtilsArray{
 
     private ArrayList<Double> arraylist;
 
+    /**
+     * Constructor
+     * @param arraylist values provided for metrics calculation
+     */
     public StatisticUtilsArrayList(ArrayList<Double> arraylist){
         this.setArraylist(arraylist);
     }
 
+    /**
+     * Sets arraylist attribute
+     * @param arraylist arraylist to set with double values
+     */
     public void setArraylist(ArrayList<Double> arraylist){
         this.arraylist = arraylist;
     }
 
+    /**
+     * Converts ArrayList to Array in order to use parent class's
+     * @param arraylist arraylist to be converted to array
+     * @return converted array
+     */
     public double[] convertArrayListToArray(ArrayList<Double> arraylist) {
         Double[] Array = arraylist.toArray(new Double[arraylist.size()]);
         double[] array = toPrimitive(Array);
         return array;
     }
 
+    /**
+     * Tests ArrayList's metrics that provided by StatisticUtilsArrayList
+     * @param args command-line arguments
+     */
     public static void main(String[] args){
 
         ArrayList<Double> arraylist = new ArrayList<>();
         arraylist.add(1.0);
         arraylist.add(2.0);
+        arraylist.add(-1.0);
+        arraylist.add(12.0);
+        arraylist.add(2.5);
+        arraylist.add(4.0);
         StatisticUtilsArrayList stats = new StatisticUtilsArrayList(arraylist);
         double[] array = stats.convertArrayListToArray(arraylist);
 
@@ -40,8 +64,6 @@ public class StatisticUtilsArrayList extends StatisticUtilsArray{
         System.out.println("Median value: " + median);
         System.out.println("Mean value: " + mean);
         System.out.println("Standard deviation value: " + std);
-
-
 
     }
 }
