@@ -6,7 +6,7 @@ import static org.apache.commons.lang3.ArrayUtils.*;
  * Inherits all statistical methods from StatisticUtilsArray
  * @author Stefanos Papadam
  */
-public class StatisticUtilsArrayList extends StatisticUtilsArray{
+public class StatisticUtilsArrayListStreams extends StatisticUtilsArrayStreams{
 
     private ArrayList<Double> arraylist;
 
@@ -14,7 +14,7 @@ public class StatisticUtilsArrayList extends StatisticUtilsArray{
      * Constructor
      * @param arraylist values provided for metrics calculation
      */
-    public StatisticUtilsArrayList(ArrayList<Double> arraylist){
+    public StatisticUtilsArrayListStreams(ArrayList<Double> arraylist){
         this.setArraylist(arraylist);
     }
 
@@ -51,7 +51,7 @@ public class StatisticUtilsArrayList extends StatisticUtilsArray{
         arraylist.add(5.0);
         arraylist.add(6.0);
 
-        StatisticUtilsArrayList stats = new StatisticUtilsArrayList(arraylist);
+        StatisticUtilsArrayListStreams stats = new StatisticUtilsArrayListStreams(arraylist);
         double[] array = stats.convertArrayListToArray(arraylist);
 
         double minimum = stats.getMinimum(array);

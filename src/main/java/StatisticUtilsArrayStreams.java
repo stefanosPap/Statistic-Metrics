@@ -94,9 +94,9 @@ public class StatisticUtilsArrayStreams {
     public double getStandardDeviation(double[] array){
         double mean = this.getMean(array);
         this.convertArrayToStream(array);
-        double var = this.stream.map(i -> i - mean).map(i -> i*i).average().getAsDouble();
-        double std = Math.sqrt(var);
-        return std;
+        double std = this.stream.map(i -> i - mean).map(i -> Math.pow(i,2)).average().getAsDouble();    // population standard deviation
+                                                                                                        // divided by n
+        return Math.sqrt(std);
     }
 
 

@@ -84,7 +84,8 @@ public class StatisticUtilsArray {
      */
     public double getStandardDeviation(double[] array){
         StandardDeviation m = new StandardDeviation();
-        double std = m.evaluate(array);
+        double std = m.evaluate(array);     // sample standard deviation
+                                            // divided by n - 1
         return std;
     }
 
