@@ -7,20 +7,11 @@ import java.util.stream.DoubleStream;
  */
 public class StatisticUtilsArrayStreams {
 
-    private double[] array;
     private DoubleStream stream;
     /**
      * Default Constructor
      */
     public StatisticUtilsArrayStreams(){
-    }
-
-    /**
-     * Constructor
-     * @param array values provided for metrics calculation
-     */
-    public StatisticUtilsArrayStreams(double[] array){
-        this.array = array;
     }
 
     /**
@@ -36,8 +27,7 @@ public class StatisticUtilsArrayStreams {
      */
     public double getMinimum(double[] array){
         this.convertArrayToStream(array);
-        double minimum = this.stream.min().getAsDouble();
-        return minimum;
+        return this.stream.min().getAsDouble();
     }
 
     /**
@@ -47,8 +37,7 @@ public class StatisticUtilsArrayStreams {
      */
     public double getMaximum(double[] array){
         this.convertArrayToStream(array);
-        double maximum = this.stream.max().getAsDouble();
-        return maximum;
+        return this.stream.max().getAsDouble();
     }
 
     /**
@@ -78,8 +67,7 @@ public class StatisticUtilsArrayStreams {
      */
     public double getMean(double[] array){
         this.convertArrayToStream(array);
-        double mean = this.stream.average().getAsDouble();
-        return mean;
+        return this.stream.average().getAsDouble();
     }
 
     /**
@@ -102,7 +90,7 @@ public class StatisticUtilsArrayStreams {
      */
     public static void main(String[] args){
         double[] array = {1.0,2.0,3.0,4.0,5.0,6.0};
-        StatisticUtilsArrayStreams stats = new StatisticUtilsArrayStreams(array);
+        StatisticUtilsArrayStreams stats = new StatisticUtilsArrayStreams();
 
         double minimum = stats.getMinimum(array);
         double maximum = stats.getMaximum(array);

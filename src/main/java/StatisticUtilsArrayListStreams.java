@@ -7,14 +7,7 @@ import static org.apache.commons.lang3.ArrayUtils.*;
  */
 public class StatisticUtilsArrayListStreams extends StatisticUtilsArrayStreams{
 
-    private ArrayList<Double> arraylist;
-
-    /**
-     * Constructor
-     * @param arraylist values provided for metrics calculation
-     */
-    public StatisticUtilsArrayListStreams(ArrayList<Double> arraylist){
-        this.arraylist = arraylist;
+    public StatisticUtilsArrayListStreams(){
     }
 
     /**
@@ -23,9 +16,8 @@ public class StatisticUtilsArrayListStreams extends StatisticUtilsArrayStreams{
      * @return converted array
      */
     public double[] convertArrayListToArray(ArrayList<Double> arraylist) {
-        Double[] Array = arraylist.toArray(new Double[arraylist.size()]);
-        double[] array = toPrimitive(Array);
-        return array;
+        Double[] Array = arraylist.toArray(new Double[0]);
+        return toPrimitive(Array);
     }
 
     /**
@@ -42,7 +34,7 @@ public class StatisticUtilsArrayListStreams extends StatisticUtilsArrayStreams{
         arraylist.add(5.0);
         arraylist.add(6.0);
 
-        StatisticUtilsArrayListStreams stats = new StatisticUtilsArrayListStreams(arraylist);
+        StatisticUtilsArrayListStreams stats = new StatisticUtilsArrayListStreams();
         double[] array = stats.convertArrayListToArray(arraylist);
 
         double minimum = stats.getMinimum(array);

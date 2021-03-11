@@ -7,25 +7,14 @@ import static org.apache.commons.lang3.ArrayUtils.*;
  */
 public class StatisticUtilsArrayList extends StatisticUtilsArray{
 
-    private ArrayList<Double> arraylist;
-
-    /**
-     * Constructor
-     * @param arraylist values provided for metrics calculation
-     */
-    public StatisticUtilsArrayList(ArrayList<Double> arraylist){
-        this.arraylist = arraylist;
-    }
-
     /**
      * Converts ArrayList to Array in order to use parent class's
      * @param arraylist arraylist to be converted to array
      * @return converted array
      */
     public double[] convertArrayListToArray(ArrayList<Double> arraylist) {
-        Double[] Array = arraylist.toArray(new Double[arraylist.size()]);
-        double[] array = toPrimitive(Array);
-        return array;
+        Double[] Array = arraylist.toArray(new Double[0]);
+        return toPrimitive(Array);
     }
 
     /**
@@ -42,7 +31,7 @@ public class StatisticUtilsArrayList extends StatisticUtilsArray{
         arraylist.add(5.0);
         arraylist.add(6.0);
 
-        StatisticUtilsArrayList stats = new StatisticUtilsArrayList(arraylist);
+        StatisticUtilsArrayList stats = new StatisticUtilsArrayList();
         double[] array = stats.convertArrayListToArray(arraylist);
 
         double minimum = stats.getMinimum(array);

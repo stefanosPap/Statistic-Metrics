@@ -10,19 +10,10 @@ import org.apache.commons.math3.stat.descriptive.rank.Min;
  */
 public class StatisticUtilsArray {
 
-    private double[] array;
     /**
      * Default Constructor
      */
     public StatisticUtilsArray(){
-    }
-
-    /**
-     * Constructor
-     * @param array values provided for metrics calculation
-     */
-    public StatisticUtilsArray(double[] array){
-        this.array = array;
     }
 
     /**
@@ -32,8 +23,7 @@ public class StatisticUtilsArray {
      */
     public double getMinimum(double[] array){
         Min m = new Min();
-        double minimum = m.evaluate(array);
-        return minimum;
+        return m.evaluate(array);
     }
 
     /**
@@ -43,8 +33,7 @@ public class StatisticUtilsArray {
      */
     public double getMaximum(double[] array){
         Max m = new Max();
-        double maximum = m.evaluate(array);
-        return maximum;
+        return m.evaluate(array);
     }
 
     /**
@@ -54,8 +43,7 @@ public class StatisticUtilsArray {
      */
     public double getMedian(double[] array){
         Median m = new Median();
-        double median = m.evaluate(array);
-        return median;
+        return m.evaluate(array);
     }
 
     /**
@@ -65,8 +53,7 @@ public class StatisticUtilsArray {
      */
     public double getMean(double[] array){
         Mean m = new Mean();
-        double mean = m.evaluate(array);
-        return mean;
+        return m.evaluate(array);
     }
 
     /**
@@ -76,9 +63,8 @@ public class StatisticUtilsArray {
      */
     public double getStandardDeviation(double[] array){
         StandardDeviation m = new StandardDeviation();
-        double std = m.evaluate(array);     // sample standard deviation
-                                            // divided by n - 1
-        return std;
+        return m.evaluate(array);   // sample standard deviation
+                                    // divided by n - 1
     }
 
     /**
@@ -92,8 +78,7 @@ public class StatisticUtilsArray {
         double median = this.getMedian(array);
         double mean = this.getMean(array);
         double std = this.getStandardDeviation(array);
-        double[] stats = {minimum, maximum, median, mean, std};
-        return stats;
+        return new double[]{minimum, maximum, median, mean, std};
     }
 
     /**
@@ -102,13 +87,14 @@ public class StatisticUtilsArray {
      */
     public static void main(String[] args){
         double[] array = {1.0,2.0,3.0,4.0,5.0,6.0};
-        StatisticUtilsArray stats = new StatisticUtilsArray(array);
+        StatisticUtilsArray stats = new StatisticUtilsArray();
 
         double minimum = stats.getMinimum(array);
         double maximum = stats.getMaximum(array);
         double median = stats.getMedian(array);
         double mean = stats.getMean(array);
         double std = stats.getStandardDeviation(array);
+        double[] statistics = stats.getStats(array);
 
         System.out.println("Minimum value: " + minimum);
         System.out.println("Maximum value: " + maximum);
