@@ -21,7 +21,7 @@ public class AscendingMinima {
      * @param minima minima ascending array
      * @return minima ascending array
      */
-    public int[] ascending_minima(int[] arr, int length, int[] minima) {
+    public int[] ascendingMinima(int[] arr, int length, int[] minima) {
 
         //recursion's end conditions
         if (arr.length == 0) return minima;
@@ -54,7 +54,7 @@ public class AscendingMinima {
 
         }
         minima = ArrayUtils.add(minima, minimum); //append minimum to minima
-        minima = ascending_minima(arr, length, minima); //recursively call minima
+        minima = ascendingMinima(arr, length, minima); //recursively call minima
         return minima;
         }
 
@@ -64,9 +64,9 @@ public class AscendingMinima {
         * @param length initial window's length
         * @return minima ascending array
         */
-        public int[] ascending_minima(int[] arr, int length){
+        public int[] ascendingMinima(int[] arr, int length){
             int[] minima = {};
-            minima = this.ascending_minima(arr, length, minima);
+            minima = this.ascendingMinima(arr, length, minima);
             return minima;
         }
 
@@ -78,7 +78,7 @@ public class AscendingMinima {
         * @param previous_minima minima ascending array before element insertion
         * @return updated minima ascending array
         */
-        public int[] ascending_minima_shift(int[] previous_window,int new_element,int[] previous_minima) {
+        public int[] ascendingMinimaShift(int[] previous_window, int new_element, int[] previous_minima) {
             if (previous_window[0] == previous_minima[0]) {
                 previous_minima = ArrayUtils.remove(previous_minima, 0); //delete previous minima's first element in case of equality
             }
@@ -103,7 +103,7 @@ public class AscendingMinima {
 
             // first example for calculating ascending minima window1
             int[] window1 = {8,9,5,3,6,5,1,1,0};
-            int[] minima1 = asc.ascending_minima(window1, window1.length);
+            int[] minima1 = asc.ascendingMinima(window1, window1.length);
             System.out.print("window is: ");
             for (int j : window1) {
                 System.out.print(" "+j);
@@ -118,7 +118,7 @@ public class AscendingMinima {
 
             // second example for calculating ascending minima window2
             int[] window2 = {7,4,8,6,3,4,2,1,2};
-            int[] minima2 = asc.ascending_minima(window2, window2.length);
+            int[] minima2 = asc.ascendingMinima(window2, window2.length);
             System.out.print("window is: ");
             for (int j : window2) {
                 System.out.print(" "+j);
@@ -133,7 +133,7 @@ public class AscendingMinima {
 
             // third example for calculating ascending minima window3
             int[] window3 = {1,2,3,4,5,6,7,8,9};
-            int[] minima3 = asc.ascending_minima(window3, window3.length);
+            int[] minima3 = asc.ascendingMinima(window3, window3.length);
             System.out.print("window is: ");
             for (int j : window3) {
                 System.out.print(" "+j);
@@ -148,7 +148,7 @@ public class AscendingMinima {
 
             // forth example for calculating ascending minima window4
             int[] window4 = {9,8,7,6,5,4,3,2,1};
-            int[] minima4 = asc.ascending_minima(window4, window4.length);
+            int[] minima4 = asc.ascendingMinima(window4, window4.length);
             System.out.print("window is: ");
             for (int j : window4) {
                 System.out.print(" "+j);
@@ -163,7 +163,7 @@ public class AscendingMinima {
 
             // fifth example for calculating ascending minima window5
             int[] window5 = {9,1,1,3,4,2,6,8,9};
-            int[] minima5 = asc.ascending_minima(window5, window5.length);
+            int[] minima5 = asc.ascendingMinima(window5, window5.length);
             System.out.print("window is: ");
             for (int j : window5) {
                 System.out.print(" "+j);
@@ -179,7 +179,7 @@ public class AscendingMinima {
 
             // example for calculating ascending minima window6 and updating it by inserting 6, 10, 0 values
             int[] window6 = {1,3,3,2,5,8,7,8,9};
-            int[] minima6 = asc.ascending_minima(window6, window6.length);
+            int[] minima6 = asc.ascendingMinima(window6, window6.length);
             System.out.print("minima is: ");
             for (int j : minima6) {
                 System.out.print(" "+j);
@@ -187,21 +187,21 @@ public class AscendingMinima {
             System.out.print("\n");
 
             System.out.print("If window moves and adds 6 at the right, then minima becomes:");
-            int[] result1 = asc.ascending_minima_shift(window6, 6, minima6);
+            int[] result1 = asc.ascendingMinimaShift(window6, 6, minima6);
             for (int j : result1) {
                 System.out.print(" "+j);
             }
             System.out.print("\n");
 
             System.out.print("If window moves and adds 10 at the right, then minima becomes: ");
-            int[] result2 = asc.ascending_minima_shift(window6, 10, minima6);
+            int[] result2 = asc.ascendingMinimaShift(window6, 10, minima6);
             for (int j : result2) {
                 System.out.print(" "+j);
             }
             System.out.print("\n");
 
             System.out.print("If window moves and adds 0 at the right, then minima becomes: ");
-            int[] result3 = asc.ascending_minima_shift(window6, 0, minima6);
+            int[] result3 = asc.ascendingMinimaShift(window6, 0, minima6);
             for (int j : result3) {
                 System.out.print(" "+j);
             }

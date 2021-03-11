@@ -1,11 +1,23 @@
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-class StatisticUtilsArrayTest {
-    double[] array = {1.0,2.0,3.0,4.0,5.0,6.0};
-    StatisticUtilsArray stat = new StatisticUtilsArray();
+import java.util.ArrayList;
 
+class StatisticUtilsArrayListTest {
+    double[] array = {1.0,2.0,3.0,4.0,5.0,6.0};
+    StatisticUtilsArrayList stat = new StatisticUtilsArrayList();
+    ArrayList<Double> arraylist = new ArrayList<>();
+
+    @Test
+    void testConvert(){
+        arraylist.add(1.0);
+        arraylist.add(2.0);
+        arraylist.add(3.0);
+        arraylist.add(4.0);
+        arraylist.add(5.0);
+        arraylist.add(6.0);
+        assertArrayEquals(array, stat.convertArrayListToArray(arraylist));
+    }
     @Test
     void testGetMinimum(){
         assertEquals(1.0, stat.getMinimum(array));
