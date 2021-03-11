@@ -20,17 +20,13 @@ public class StatisticUtilsArrayStreams {
      * @param array values provided for metrics calculation
      */
     public StatisticUtilsArrayStreams(double[] array){
-        this.setArray(array);
-    }
-
-    /**
-     * Sets array attribute
-     * @param array array to set with double values
-     */
-    public void setArray(double[] array){
         this.array = array;
     }
 
+    /**
+     * Convert array of doubles to stream
+     * @param array array to be converted to stream
+     */
     public void convertArrayToStream(double[] array){this.stream = Arrays.stream(array);}
 
     /**

@@ -3,7 +3,6 @@ import static org.apache.commons.lang3.ArrayUtils.*;
 
 /**
  * Statistical metrics for an ArrayList of doubles
- * Inherits all statistical methods from StatisticUtilsArray
  * @author Stefanos Papadam
  */
 public class StatisticUtilsArrayList extends StatisticUtilsArray{
@@ -15,14 +14,6 @@ public class StatisticUtilsArrayList extends StatisticUtilsArray{
      * @param arraylist values provided for metrics calculation
      */
     public StatisticUtilsArrayList(ArrayList<Double> arraylist){
-        this.setArraylist(arraylist);
-    }
-
-    /**
-     * Sets arraylist attribute
-     * @param arraylist arraylist to set with double values
-     */
-    public void setArraylist(ArrayList<Double> arraylist){
         this.arraylist = arraylist;
     }
 

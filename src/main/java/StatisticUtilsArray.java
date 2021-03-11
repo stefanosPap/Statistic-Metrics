@@ -22,14 +22,6 @@ public class StatisticUtilsArray {
      * @param array values provided for metrics calculation
      */
     public StatisticUtilsArray(double[] array){
-        this.setArray(array);
-    }
-
-    /**
-     * Sets array attribute
-     * @param array array to set with double values
-     */
-    public void setArray(double[] array){
         this.array = array;
     }
 
