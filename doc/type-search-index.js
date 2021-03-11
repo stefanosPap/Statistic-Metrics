@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes","u":"allclasses-index.html"},{"p":"<Unnamed>","l":"StatisticUtilsArray"}];updateSearchResults();
+typeSearchIndex = [{"l":"All Classes","u":"allclasses-index.html"},{"p":"<Unnamed>","l":"AscendingMinima"},{"p":"<Unnamed>","l":"StatisticUtilsArray"},{"p":"<Unnamed>","l":"StatisticUtilsArrayList"},{"p":"<Unnamed>","l":"StatisticUtilsArrayListGenerics"},{"p":"<Unnamed>","l":"StatisticUtilsArrayListStreams"},{"p":"<Unnamed>","l":"StatisticUtilsArrayStreams"}];updateSearchResults();
