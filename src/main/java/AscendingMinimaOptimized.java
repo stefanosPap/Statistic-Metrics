@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.stream.Stream;
 import java.util.stream.IntStream;
 import org.apache.commons.lang3.*;
 import org.apache.commons.lang3.time.StopWatch;
@@ -23,20 +22,19 @@ public class AscendingMinimaOptimized {
      * @param minima minima ascending array
      * @return minima ascending array
      */
-    public  Deque<Integer> AscendingMinimaOptimized(BinaryTree arr, int length,  Deque<Integer> minima) {
+    public  Deque<Integer> AscendingMinimaOptimized(int[] arr, int length,  Deque<Integer> minima) {
 
         //recursion's end conditions
-        if (arr.numberOfElements == 0) return minima;
-        if (arr.numberOfElements == 1) {
-            minima.add(arr.root.data); // append first element to minima
+        if (arr.length == 0) return minima;
+        if (arr.length == 1) {
+            minima.add(arr[0]); // append first element to minima
             return minima;
         }
 
         int min_index;
-        //int minimum = Arrays.stream(arr).min().getAsInt(); //find minimum of window
-        int minimum = arr.minNode(arr.root).data;
-        arr.deleteNode(arr.root, minimum);
-        /*
+        int minimum = Arrays.stream(arr).min().getAsInt(); //find minimum of window
+        min_index = ArrayUtils.indexOf(arr, minimum); //find index of minimum element
+
         // in case of minimum duplicates this while loop updates min_index to the last index that contains current minimum value
         while (true) {
             // isolate window's elements from min_index + 1 to window_length - 1
@@ -48,14 +46,13 @@ public class AscendingMinimaOptimized {
 
             // if minimum in window then update min index to the minimum's last index
             if (IntStream.of(arr).anyMatch(x -> x == minimum)) {
-                int last_min = ArrayUtils.indexOf(arr, minimum);
-                min_index = last_min;
+                min_index = ArrayUtils.indexOf(arr, minimum);
             }
             else{
                 break;
             }
 
-        }*/
+        }
         minima.add(minimum);  //append minimum to minima
         minima = AscendingMinimaOptimized(arr, length, minima); //recursively call minima
         return minima;
@@ -67,7 +64,7 @@ public class AscendingMinimaOptimized {
      * @param length initial window's length
      * @return minima ascending array
      */
-    public Deque<Integer> AscendingMinimaOptimized(BinaryTree arr, int length){
+    public Deque<Integer> AscendingMinimaOptimized(int[] arr, int length){
         Deque<Integer> minima = new LinkedList<>();
         minima = this.AscendingMinimaOptimized(arr, length, minima);
         return minima;
@@ -118,7 +115,8 @@ public class AscendingMinimaOptimized {
         AscendingMinimaOptimized asc = new AscendingMinimaOptimized();
 
         // first example for calculating ascending minima window1
-        //int[] window1 = {8,9,5,3,6,5,1,1,0};
+        int[] window1 = {8,9,5,3,6,5,1,1,0};
+        /*
         BinaryTree window1 = new BinaryTree();
         window1.insert(8);
         window1.insert(9);
@@ -129,17 +127,15 @@ public class AscendingMinimaOptimized {
         window1.insert(1);
         window1.insert(1);
         window1.insert(2);
-
-        Deque<Integer> minima1 = asc.AscendingMinimaOptimized(window1, window1.numberOfElements);
+        */
+        Deque<Integer> minima1 = asc.AscendingMinimaOptimized(window1, window1.length);
 
         System.out.print("window is: ");
-        window1.inorderTraversal(window1.root);
-        /*
         for (int j : window1) {
             System.out.print(" "+j);
         }
         System.out.print("\n");
-        */
+
         System.out.print("minima is: ");
         for (int j : minima1) {
             System.out.print(" "+j);
