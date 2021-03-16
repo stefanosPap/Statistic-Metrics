@@ -5,6 +5,7 @@
 * Point 3 is implemented in class **AscendingMinima** which is located in the following path: */src /main /java /AscendingMinima.java*.     
 * Additional Point 1 is implemented in classes **StatisticUtilsArrayStreams** and **StatisticUtilsArrayListStreams** which are located in paths: */src /main /java /StatisticUtilsArrayStreams.java* and */src /main /java /StatisticUtilsArrayListStreams.java* accordingly. 
 * Additional Point 2 is implemented in class **StatisticUtilsArrayListGenerics** which is located in the following path: */src /main /java /StatisticUtilsArrayListGenerics.java*  
+* Additional Point 3 is implemented in class **AscendingMinimaOptimized** which is located in the following path: */src /main /java /AscendingMinimaOptimized.java* 
 ## Running
 It is recommended to open and run the project with Intellij.
 #### Steps 
