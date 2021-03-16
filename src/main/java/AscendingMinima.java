@@ -48,8 +48,7 @@ public class AscendingMinima {
             // if minimum in window then update min index to the minimum's last index
 
             if (IntStream.of(arr).anyMatch(x -> x == minimum)) {
-                int last_min = ArrayUtils.indexOf(arr, minimum);
-                min_index = last_min;
+                min_index = ArrayUtils.indexOf(arr, minimum);
 
             }
             else{

@@ -142,7 +142,7 @@ public class AscendingMinimaOptimized {
         }
         System.out.print("\n");
         System.out.print("\n");
-/*
+
         // second example for calculating ascending minima window2
         int[] window2 = {7,4,8,6,3,4,2,1,2};
         Deque<Integer> minima2 = asc.AscendingMinimaOptimized(window2, window2.length);
@@ -238,7 +238,7 @@ public class AscendingMinimaOptimized {
         System.out.print("\n");
         watch.stop();
         System.out.println(watch.getTime());
-*/
+
     }
 }
 
