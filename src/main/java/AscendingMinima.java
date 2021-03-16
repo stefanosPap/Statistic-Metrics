@@ -1,6 +1,7 @@
-import java.util.Arrays;
+import java.util.*;
 import java.util.stream.IntStream;
 import org.apache.commons.lang3.*;
+import org.apache.commons.lang3.time.StopWatch;
 
 /**
  * Implements Ascending Minima Algorithm
@@ -36,6 +37,7 @@ public class AscendingMinima {
 
         // in case of minimum duplicates this while loop updates min_index to the last index that contains current minimum value
         while (true) {
+
             // isolate window's elements from min_index + 1 to window_length - 1
             int[] slice = new int[arr.length - min_index - 1];
             for (int i = 0; i < slice.length; i++) {
@@ -44,14 +46,15 @@ public class AscendingMinima {
             arr = slice;
 
             // if minimum in window then update min index to the minimum's last index
+
             if (IntStream.of(arr).anyMatch(x -> x == minimum)) {
                 int last_min = ArrayUtils.indexOf(arr, minimum);
-                min_index = min_index + last_min + 1;
+                min_index = last_min;
+
             }
             else{
                 break;
             }
-
         }
         minima = ArrayUtils.add(minima, minimum); //append minimum to minima
         minima = ascendingMinima(arr, length, minima); //recursively call minima
@@ -59,7 +62,7 @@ public class AscendingMinima {
         }
 
         /**
-        * Overload method of ascending_minima in order to pass default value for minima variable
+        * Overload method of ascendingMinima in order to pass default value for minima variable
         * @param arr window to calculate its minima ascending array
         * @param length initial window's length
         * @return minima ascending array
@@ -79,18 +82,27 @@ public class AscendingMinima {
         * @return updated minima ascending array
         */
         public int[] ascendingMinimaShift(int[] previous_window, int new_element, int[] previous_minima) {
-            if (previous_window[0] == previous_minima[0]) {
+            if (previous_window[0] == previous_minima[0] && previous_minima.length != 1) {
                 previous_minima = ArrayUtils.remove(previous_minima, 0); //delete previous minima's first element in case of equality
             }
             // while loop for removing backwards all elements greater than the new added element from previous minima
-            while (previous_minima[previous_minima.length - 1] > new_element) {
-                previous_minima = ArrayUtils.remove(previous_minima, previous_minima.length - 1);
+            if (previous_minima.length - 1 > 0) {
+                while (previous_minima[previous_minima.length - 1] >= new_element) {
+                    previous_minima = ArrayUtils.remove(previous_minima, previous_minima.length - 1);
 
-                if (previous_minima.length == 0) {
-                    break;
+                    if (previous_minima.length == 0) {
+                        break;
+                    }
                 }
-
             }
+            // case of previous minima has length = 1
+            else{
+                // if the new element is less or equal than previous_minima's element then remove it and add the new element
+                if (previous_minima[0] >= new_element){
+                    previous_minima = ArrayUtils.remove(previous_minima, 0); //delete previous minima's first element in case of equality
+                }
+            }
+
             previous_minima = ArrayUtils.add(previous_minima, new_element); //append new element to minima
             return previous_minima;
         }
@@ -99,10 +111,12 @@ public class AscendingMinima {
         * @param args command-line arguments
         */
         public static void main(String[] args){
+            StopWatch watch = new StopWatch();
+            watch.start();
             AscendingMinima asc = new AscendingMinima();
 
             // first example for calculating ascending minima window1
-            int[] window1 = {8,9,5,3,6,5,1,1,0};
+            int[] window1 = {8,9,5,3,6,5,1,1,0,1,2,3,4,1,2,3,4,5,0,6,5,3,7,1,3,4,8,9,2,3,4,5,6,1,2,3,-1,0,-1};
             int[] minima1 = asc.ascendingMinima(window1, window1.length);
             System.out.print("window is: ");
             for (int j : window1) {
@@ -178,7 +192,7 @@ public class AscendingMinima {
             System.out.println("-----------------------------");
 
             // example for calculating ascending minima window6 and updating it by inserting 6, 10, 0 values
-            int[] window6 = {1,3,3,2,5,8,7,8,9};
+            int[] window6 = {1,3,3,2,5,8,7,8,9,2,3,4,5,6,7,8,5,3,2,0,4,1};
             int[] minima6 = asc.ascendingMinima(window6, window6.length);
             System.out.print("minima is: ");
             for (int j : minima6) {
@@ -205,6 +219,10 @@ public class AscendingMinima {
             for (int j : result3) {
                 System.out.print(" "+j);
             }
+            watch.stop();
+            System.out.print("\n");
+
+            System.out.println(watch.getTime());
         }
 }
 
