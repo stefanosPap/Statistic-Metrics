@@ -116,18 +116,6 @@ public class AscendingMinimaOptimized {
 
         // first example for calculating ascending minima window1
         int[] window1 = {8,9,5,3,6,5,1,1,0};
-        /*
-        BinaryTree window1 = new BinaryTree();
-        window1.insert(8);
-        window1.insert(9);
-        window1.insert(5);
-        window1.insert(3);
-        window1.insert(6);
-        window1.insert(5);
-        window1.insert(1);
-        window1.insert(1);
-        window1.insert(2);
-        */
         Deque<Integer> minima1 = asc.AscendingMinimaOptimized(window1, window1.length);
 
         System.out.print("window is: ");
