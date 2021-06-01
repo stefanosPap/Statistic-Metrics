@@ -1,0 +1,4 @@
+package CodingEvaluationTest.generated;
+public class StatisticUtilsArrayStreams_jmhType extends StatisticUtilsArrayStreams_jmhType_B3 {
+}
+
